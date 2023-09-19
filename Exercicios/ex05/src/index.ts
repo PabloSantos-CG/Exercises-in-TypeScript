@@ -108,11 +108,12 @@ function removeSatellite() {
 function listPlanets() {
   let finalList = ""
   let listSatellites = ""
-
+  let cont = 1
   planets.forEach(value => {
 
     value.satellites.forEach(value => {
-      listSatellites += `Nome: ${value}\n`
+      listSatellites += `${cont}º - ${value}\n`
+      cont++
     })
   
     finalList += `
@@ -123,17 +124,20 @@ function listPlanets() {
     `
   })
 
-  alert(`Planetas salvos: \n${finalList}`)
+  if(planets.length === 0) alert("Ainda não há planetas registrados.\nExperimente criar um.")
+  else alert(`Planetas salvos: \n${finalList}`)
 }
 
-function menuOptionOne() {
+function menuOptionCreatePlanet() {
+  alert("Vamos criar o seu planeta! :) \nSerá necessário:\nNome\nCoordenadas\nSituação do Planeta\nSatelites (Opcional)")
+
   const name = prompt("Informe o nome do planeta que deseja criar:")
   const coordinate: Array<number> = []
   const satellites: Array<string> = []
   
   
   alert("Atenção!\nAs coordenadas devem ser numéricas\nNão insira letras, apenas números!")
-  for (let i = 1; i < 4; i++) {
+  for (let i = 1; i <= 4; i++) {
     const value = parseFloat(prompt(`Insira a ${i}ª coordenada:`))
     coordinate.push(value)
   }
@@ -143,7 +147,7 @@ function menuOptionOne() {
   if(confirmSattelites) {
     const repetitions = parseInt(prompt("Quantos satélites deseja adicionar?"))
     
-    for (let i = 1; i < repetitions; i++) {
+    for (let i = 1; i <= repetitions; i++) {
       const value = prompt(`Insira o ${i}º satélite:`)
       satellites.push(value)
     }
@@ -154,26 +158,16 @@ function menuOptionOne() {
   situationPlanet(newPlanet)
 }
 
-function menuOptionTwo() {
-}
 
-function menuOptionThree() {
-}
-
-function menuOptionFour() {
-}
-
-function menuOptionFive() {
-}
-
-function menu() {
+function executeMenu() {
   let options = ""
   
   
   do {
     options = prompt(`
     Seja Bem-Vindo(a)
-    \nNossa lista de planetas atualmente possui ${planets.length} planetas.
+    Total de planetas registrados: ${planets.length}
+
     Escolha uma das opções abaixo:
     1 - Criar planeta
     2 - Atualizar a situação do planeta
@@ -182,9 +176,33 @@ function menu() {
     5 - Listar planetas
     6 - Encerrar
     `)
+
+    switch(options) {
+      case "1":
+        menuOptionCreatePlanet()
+        break
+      case "2":
+        updateStatus()
+        break
+      case "3":
+        addSatellite()
+        break
+      case "4":
+        removeSatellite()
+        break
+      case "5":
+        listPlanets()
+        break
+      case "6":
+        alert("Encerrando...")
+        break
+      default:
+        alert("Opção inválida!")
+    }
     
   } while(options !== "6")
 }
 
+document.querySelector("#start").addEventListener("click", executeMenu)
 //Melhorias para fazer: 
 //1 - fazer uma opção para o usuário não criar coisas repetidas
