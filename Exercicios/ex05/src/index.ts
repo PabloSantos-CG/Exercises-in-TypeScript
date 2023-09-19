@@ -38,7 +38,7 @@ function updateStatus() {
 //Atualiza a situação do planeta
 function situationPlanet(planet) {
   const optionForSituation = prompt(
-    `Para a situação do planeta, escolha uma das opções abaixo:
+    `Para a situação do planeta, escolha o número da opção desejada:
     1 - Habitado
     2 - Habitável
     3 - Inabitável
@@ -75,10 +75,10 @@ function addSatellite() {
   if(!planet) {
     alert("Planeta não existente!\nVoltando para o menu...")
   } else {
-    const satellite = prompt("Informe o nome do satélite:")
-    planets.push(satellite)
+    const newSatellite = prompt("Informe o nome do satélite:")
+    planet.satellites.push(newSatellite)
     
-    alert(`O satélite ${satellite} foi adicionado ao planeta ${planet.name}`)
+    alert(`O satélite ${newSatellite} foi adicionado ao planeta ${planet.name}`)
   }
 }
 
@@ -94,7 +94,12 @@ function removeSatellite() {
     const satellite = prompt("Informe o nome do satelite que deseja remover:")
     const indexSatellite = planet.satellites.findIndex(value => value === satellite)
     
+    console.log(indexSatellite)
+    console.log(satellite)
+
     if(indexSatellite) {
+      console.log("Entrou na condicional")
+      //
       planet.satellites.splice(indexSatellite, 1)
       alert(`Satelite ${satellite} removido com sucesso!`)
     } else {
@@ -108,12 +113,11 @@ function removeSatellite() {
 function listPlanets() {
   let finalList = ""
   let listSatellites = ""
-  let cont = 1
+
   planets.forEach(value => {
 
-    value.satellites.forEach(value => {
-      listSatellites += `${cont}º - ${value}\n`
-      cont++
+    value.satellites.forEach(valuePropertie => {
+      listSatellites += `${valuePropertie}\n`
     })
   
     finalList += `
@@ -168,7 +172,7 @@ function executeMenu() {
     Seja Bem-Vindo(a)
     Total de planetas registrados: ${planets.length}
 
-    Escolha uma das opções abaixo:
+    Escolha o número da opção desejada:
     1 - Criar planeta
     2 - Atualizar a situação do planeta
     3 - Adicionar satélite ao planeta
@@ -199,10 +203,11 @@ function executeMenu() {
       default:
         alert("Opção inválida!")
     }
-    
+    console.log(planets)
   } while(options !== "6")
 }
 
 document.querySelector("#start").addEventListener("click", executeMenu)
 //Melhorias para fazer: 
 //1 - fazer uma opção para o usuário não criar coisas repetidas
+//2 - incrementar types melhores
