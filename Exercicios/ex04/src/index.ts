@@ -55,7 +55,7 @@ function sendToMission(spaceShip: { name: string, pilot: string, crewLimit: numb
 
 //4ª função, irá enviar a nave em uma missão
 function showSpaceShips() {
-  let dataShips: string = ""
+  let dataShips = ""
 
   libraryOfShips.forEach(value => {
     dataShips += `
@@ -67,7 +67,7 @@ function showSpaceShips() {
     \n\n
     `
   })
-
+  
   alert(dataShips)
   console.log(dataShips)
 }
@@ -120,8 +120,8 @@ function thirdMenuOption() {
 }
 
 function execute() {
-  let options: string = ""
-
+  let options = ""
+  
   do {
     options = prompt(`
     Seja Bem-Vindo(a)!
