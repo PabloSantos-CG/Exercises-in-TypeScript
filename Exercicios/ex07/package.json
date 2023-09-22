@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "tsc-w": "tsc -watch index.ts"
+    "tsc-w": "tsc --watch"
   },
   "keywords": [],
   "author": "",

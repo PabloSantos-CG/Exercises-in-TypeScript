@@ -59,4 +59,3 @@ export class DataBase extends AddRemoveSattelites{
   }
 
 }
-
