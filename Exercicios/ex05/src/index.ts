@@ -139,7 +139,6 @@ function menuOptionCreatePlanet() {
   const coordinate: Array<number> = []
   const satellites: Array<string> = []
   
-  
   alert("Atenção!\nAs coordenadas devem ser numéricas\nNão insira letras, apenas números!")
   for (let i = 1; i <= 4; i++) {
     const value = parseFloat(prompt(`Insira a ${i}ª coordenada:`))
