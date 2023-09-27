@@ -11,9 +11,10 @@ export class OptionCreatePlanet {
                 i--;
             }
             else {
-                alert("Adicionando ao array...");
                 coordinate.push(value);
             }
+            //debug
+            console.log({ coordinate });
         }
         //Satelites
         const confirmSattelites = confirm("Deseja adicionar satélites ?");

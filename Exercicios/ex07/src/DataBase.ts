@@ -15,18 +15,20 @@ export class DataBase extends AddRemoveSattelites{
     satellites?: Array<string>
     ) {
     
-    const newPlanet = new CreatePlanet(name, coordinate, satellites = undefined)
+    const newPlanet = new CreatePlanet(name, coordinate, satellites)
     DataBase.planets.push(newPlanet)
-
-    console.log(newPlanet)
-
+    
     return newPlanet
   }
 
   //Método que busca pelo planeta e faz uma verificação
   static searchPlanet(namePlanet: string): Planet {
     const planet: Planet | undefined = DataBase.planets.find(value => value.name === namePlanet)
-    if(!planet) alert("Planeta inexistente!\nVoltando para o menu...")
+    if(!planet) {
+      alert("Planeta inexistente!\nVoltando para o menu...")
+      //debug
+      console.log(planet)
+    }
     
     return planet
   }
@@ -36,7 +38,9 @@ export class DataBase extends AddRemoveSattelites{
     const name = CaptureName.namePrompt()
     const planet = DataBase.searchPlanet(name)
 
-    SituationPlanet.changeSituation(planet)
+    if(typeof planet !== "undefined") {
+      SituationPlanet.changeSituation(planet)
+    }
   }
 
   static listPlanets() {
@@ -53,8 +57,8 @@ export class DataBase extends AddRemoveSattelites{
       Planeta: ${value.name}
       Coordenadas: ${value.coordinate}
       Situação: ${value.situation}
-      Satelites: \n${listSatellites}
-      `
+      Satelites:
+        ${listSatellites}`
     })
 
     if(DataBase.planets.length === 0) alert("Ainda não há planetas registrados.\nExperimente criar um.")
@@ -72,7 +76,17 @@ export class DataBase extends AddRemoveSattelites{
       const newPlanet = DataBase.newPlanet(name, coordinate, satellites)
 
       SituationPlanet.changeSituation(newPlanet)
-    } 
+    }
+    
+    console.log(DataBase.planets)
+  }
+
+  static checkDatabase(fn: () => void) {
+    if(DataBase.planets.length > 0) {
+      fn()
+    } else {
+      alert("No momento não há planetas no \"banco de dados\"")
+    }
   }
 
   static executeMenu() {
@@ -97,16 +111,16 @@ export class DataBase extends AddRemoveSattelites{
           DataBase.createPlanet()
           break
         case "2":
-          DataBase.updateStatus()
+          DataBase.checkDatabase(DataBase.updateStatus)
           break
         case "3":
-          DataBase.addSatellite()
+          DataBase.checkDatabase(DataBase.addSatellite)
           break
         case "4":
-          DataBase.removeSatellite()
+          DataBase.checkDatabase(DataBase.removeSatellite)
           break
         case "5":
-          DataBase.listPlanets()
+          DataBase.checkDatabase(DataBase.listPlanets)
           break
         case "6":
           alert("Encerrando...")
@@ -114,8 +128,6 @@ export class DataBase extends AddRemoveSattelites{
         default:
           alert("Opção inválida!")
       }
-      console.log(DataBase.planets)
-      
     } while(options !== "6")
 
     

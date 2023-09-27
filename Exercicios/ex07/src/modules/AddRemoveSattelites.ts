@@ -10,13 +10,17 @@ export class AddRemoveSattelites {
   static addSatellite() {
     const name = CaptureName.namePrompt()
     const planet = DataBase.searchPlanet(name)
-    const newSatellite = prompt("Informe o nome do satélite:")
 
-    if(planet.satellites.includes(newSatellite)) {
-      alert(`O satélite ${newSatellite} já existe no planeta ${planet.name}`)
-    } else {
-      planet.satellites.push(newSatellite)
-      alert(`O satélite ${newSatellite} foi adicionado ao planeta ${planet.name}`)
+    if(typeof planet !== "undefined") {
+      const newSatellite = prompt("Informe o nome do satélite:")
+  
+      //Verifica se o satélite ja está incluso
+      if(planet.satellites.includes(newSatellite)) {
+        alert(`O satélite ${newSatellite} já existe no planeta ${planet.name}`)
+      } else {
+        planet.satellites.push(newSatellite)
+        alert(`O satélite ${newSatellite} foi adicionado ao planeta ${planet.name}`)
+      }
     }
   }
 

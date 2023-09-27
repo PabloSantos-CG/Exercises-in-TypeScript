@@ -16,9 +16,10 @@ export class OptionCreatePlanet {
         alert("Isto não é um número!")
         i--
       } else {
-        alert("Adicionando ao array...")
         coordinate.push(value)
       }
+      //debug
+      console.log({ coordinate })
     }
 
     //Satelites
