@@ -11,7 +11,7 @@ export class SituationPlanet {
       3 - Inabitável
       4 - Inexplorado`
     )
-
+      
     switch(option) {
       case "1":
         planet.situation = "Habitado"

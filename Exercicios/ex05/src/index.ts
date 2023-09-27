@@ -165,7 +165,6 @@ function menuOptionCreatePlanet() {
 function executeMenu() {
   let options = ""
   
-  
   do {
     options = prompt(`
     Seja Bem-Vindo(a)
