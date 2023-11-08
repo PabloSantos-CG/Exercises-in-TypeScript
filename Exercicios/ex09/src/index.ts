@@ -26,11 +26,7 @@ class CreatePerson {
     }
   }
 }
- 
-
-//  só vai poder comprar o carro se for mair de 18 e se tiver trabalhando, e se tiver umas das opiçes setadas do carro 
 
 
 const fulano = new CreatePerson("Guio", 26, "SIM")
 console.log({ fulano })
-fulano.addCar()
