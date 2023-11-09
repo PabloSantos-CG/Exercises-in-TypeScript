@@ -32,6 +32,7 @@ main {
 }
 
 main h1 {
+  color: #4d4d4d;
   text-align: center;
 }
 
@@ -49,13 +50,14 @@ form button {
   flex: 1;
   cursor: pointer;
   font-weight: bold;
-  background-color: #faabb8;
-  color: #000000;
+  background-color: #000000;
+  color: #ffffff;
+  transition: ease .5s;
 }
 
 form button:hover {
-  background-color: #DAFDBA;
-  transition: .5s;
+  background-color: transparent;
+  color: #000000;
 }
 
 form input[type="text"], button {
@@ -72,15 +74,25 @@ form input[type="text"], button {
   padding: .4rem;
   border-radius: .5rem;
   list-style-type: none;
+  overflow: auto;
 
   display: flex;
   flex-direction: column;
   row-gap: .6rem;
 }
 
-#containerList li {
+#containerList li, div {
   display: flex;
   justify-content: space-between;
+  
+  align-items: center;
+  padding-left: .1rem;
+  border-radius: .2rem;
+  transition: ease .5s;
+}
+
+#containerList li:hover {
+  background-color: #45c4b113;
 }
 
 #containerList li span {
@@ -90,10 +102,11 @@ form input[type="text"], button {
   border-radius: .3rem;
   box-shadow: 0px 2px 3px 1px #00000057;
   cursor: pointer;
+  transition: .5s ease;
 }
 
 #containerList li span:hover {
   background-color: transparent;
   color: #000;
-  transition: .5s;
+  transform: scale(.9);
 }
