@@ -1,28 +1,44 @@
-function spaceShip(name: string, captain: string) {
-  const ship = {
-    name,
-    captain,
-    speed: 20
+class SilverShip {
+  public shipName: string;
+  public CaptainName: string;
+  public currentSpeed = 20;
+
+  setAttributes() {
+    this.shipName = prompt("Hi Sir! \nNos informe o nome da nave:");
+    this.CaptainName = prompt("Agora informe seu nome:");
   }
 
-  alert(`A nave \"${ship.name || "\"CONFIDENCIAL\""}\" foi enviada numa missão pelo capitão ${ship.captain || "\"CONFIDENCIAL\""}...`)
+  showNave() {
+    alert(`
+      A nave ${this.shipName || "CONFIDENCIAL"} \nFoi enviada numa missão pelo capitão "${this.CaptainName || "CONFIDENCIAL"}"...
+    `);
+    this.accelerateShip();
+  }
 
-  return ship
-}
+  accelerateShip() {
+    const confirmation = confirm(`Capitão "${this.CaptainName}", deseja aumentar a velociade da nave?`);
 
-function speedUpShip(newSpeed: number, spaceShip: { name:string, speed: number }) {
-  if(spaceShip.speed > newSpeed) {
-    alert(`Reduzindo a velocidade da \"${spaceShip.name}\" para ${newSpeed}...`)
-  } else if(spaceShip.speed < newSpeed) {
-    alert(`Aumentando a velocidade da \"${spaceShip.name}\" para ${newSpeed}...`)
-  } else {
-    alert(`Mantendo a velocidade da \"${spaceShip.name}\"...`)
+    if(confirmation) {
+      alert("Yes Sir! \nLet's Go!");
+      const value = +prompt("Em quanto deseja aumentar a velocidade?");
+  
+      if (this.currentSpeed > value && value > 0) {
+        alert(`Reduzindo a velocidade de: "${this.currentSpeed}" para: ${value}...`);
+        this.currentSpeed -= value;
+  
+      } else if (this.currentSpeed < value) {
+        alert(`Aumentando a velocidade de: "${this.currentSpeed}" para: ${value}...`);
+        this.currentSpeed += value;
+  
+      } else {
+        alert(`Valor inválido! \nMantendo a velocidade da nave em: "${this.currentSpeed}"...`);
+      }
+    } else {
+      alert("Yes Sir! \nGood Choice!");
+    }
   }
 }
 
-const shipName = prompt("Diga o nome da nave")
-const captain = prompt("Diga o nome do capitão")
-const ship = spaceShip(shipName, captain)
-
-const currentSpeed = Number(prompt("Diga a velocidade que deseja"))
-speedUpShip(currentSpeed, ship)
+const nave = new SilverShip();
+nave.setAttributes();
+nave.showNave();

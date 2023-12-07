@@ -1,6 +1,6 @@
 {
   "compilerOptions": {
-    "outFile": "main.js",
+    "outFile": "dist/main.js",
     "target": "ES2015"
   }
 }
