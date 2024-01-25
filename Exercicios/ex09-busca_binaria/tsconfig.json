@@ -1,0 +1,6 @@
+{
+  "compilerOptions": {
+    "outFile": "dist/index.js",
+    "target": "ES2015"
+  }
+}
