@@ -8,36 +8,36 @@ graph["peggy"] = [];
 graph["thom"] = [];
 graph["jonny"] = [];
 
-/**
- * Determine whether a person is a seller
- * @param {string} name Friend's name
- * @returns {boolean} Result of checking
- */
+
+//retorna true se a última letra da string for 'm'
 function personIsSeller(name) {
   return name[name.length - 1] === "m";
 }
 
-/**
- * Find a mango seller
- * @param {string} name Friend's name
- * @returns {boolean} Search results
- */
+
 function search(name) {
   let search_queue = [];
-  search_queue = search_queue.concat(graph[name]);
-  // This array is how you keep track of which people you've searched before.
   const searched = [];
+
+  search_queue = search_queue.concat(graph[name]);
+
   while (search_queue.length) {
+    //person representa a primeiro elemento do array que acabou de ser retirado
     let person = search_queue.shift();
-    // Only search this person if you haven't already searched them
+    
+    //se o elemento nao estiver no array retorna -1 entao cai dentro do if da linha 28
     if (searched.indexOf(person) === -1) {
+
       if (personIsSeller(person)) {
         console.log(person + " is a mango seller!");
         return true;
       }
 
+      //se houver algum valor ou seja array relacionado com a chave 'person' do objeto graph
+      //ele vai adicionar no final de search_queue
       search_queue = search_queue.concat(graph[person]);
-      // Marks this person as searched
+      
+      //searched representa a lista dos já verificados
       searched.push(person);
     }
   }
